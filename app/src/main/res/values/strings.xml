@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Drive Points</string>
+    <string name="get_started">Get Started</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="next">Next</string>
+    <string name="continue_fb">Connect With Facebook</string>
+    <string name="search_destination">Search Destination</string>
+    <string name="continue_google">Connect With Google</string>
+    <string name="enter_the_destination">Enter The Destination</string>
+    <string name="search_for_location">Search for a location</string>
+    <string name="log_in">Log In</string>
+    <string name="log_in_account">Log In Account</string>
+    <string name="drivepoint_website">www.drivepoints.com</string>
+
+    <string name="safe_route_title">Select Safe Routes\nTo Your Destinations</string>
+    <string name="safe_route_desc">Choose one of the safe and easy route\nfrom the multiple routes to showing\non your device</string>
+    <string name="track_vehicle_title">Track Your Single or\nMultiple Vehicles</string>
+    <string name="track_vehicle_desc">Now you can track your single or multiple\nvehicles with their mileages, distance, hours\n
+        with the multiple map layers</string>
+    <string name="vehicle_insured_title">Now Get Your Vehicles\nInsured before go on\nthe Routes</string>
+    <string name="vehicle_insured_desc">Get your vehicles insured with us\n
+        and you can ask road side assistance\nif any problem has occurred</string>
+    <string name="get_registered_title">Get Registered with us\n
+        as a entrepreneur,\nprivate user or a driver</string>
+    <string name="get_registered_desc">Now Get Registered and Become\n
+        A Member as Entrepreneur,\nPrivate User or A Driver</string>
+
+    <string name="facebook_app_id">1442916876056725</string>
+
+    <string name="fb_login_protocol_scheme">fb204127990172423</string>
+    <string name="server_client_id">482788615437-dic0bvs8lsb92cnjmpq53u9reuofn46f.apps.googleusercontent.com</string>
+    <string name="google_client_secret">1M25iZs5Icd5k5ewyWBHKwG2</string>
+
+    <string name="google_maps_key">AIzaSyDgUN5vMP7-m9Fkf-uTVWBhquxwo73LrkY</string>
+    <string name="password">Password</string>
+    <string name="your_email">Your Email</string>
+    <string name="error_message_email">Enter Email</string>
+    <string name="error_message_password">Enter Password</string>
+    <string name="error_valid_email">Enter Valid Email</string>
+    <string name="swipe_next_or_previous">Swipe Next or Previous to see other routes</string>
+
+</resources>
