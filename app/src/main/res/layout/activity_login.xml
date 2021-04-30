@@ -80,9 +80,10 @@
                 android:layout_margin="5dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto_regular"
-                android:hint="@string/your_email"
+                android:hint="@string/email"
                 android:textColor="@color/colorAccent"
                 android:textColorHint="@color/colorAccent"
+                android:textCursorDrawable="@drawable/edit_drawable"
                 android:textSize="16sp" />
 
 
@@ -116,6 +117,7 @@
                 android:inputType="textPassword"
                 android:textColor="@color/colorAccent"
                 android:textColorHint="@color/colorAccent"
+                android:textCursorDrawable="@drawable/edit_drawable"
                 android:textSize="16sp" />
 
 
@@ -148,7 +150,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="5dp"
-                android:src="@drawable/ic_baseline_arrow_forward" />
+                android:src="@drawable/ic_baseline_forward"
+                app:tint="@color/white" />
         </LinearLayout>
     </LinearLayout>
 

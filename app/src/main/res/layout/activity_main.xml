@@ -7,13 +7,66 @@
     android:background="@color/white"
     tools:context=".Activities.MainActivity">
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/btns_layout" />
+        android:layout_above="@+id/btns_layout">
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="100dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/r1_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/r1_color"
+                android:fontFamily="@font/roboto_regular"
+                android:padding="10dp"
+                android:text="R1"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/r2_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/r2_color"
+                android:fontFamily="@font/roboto_regular"
+                android:padding="10dp"
+                android:text="R2"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/r3_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/r3_color"
+                android:fontFamily="@font/roboto_regular"
+                android:padding="10dp"
+                android:text="R3"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/menu_click"
@@ -71,7 +124,7 @@
             </RelativeLayout>
         </RelativeLayout>
 
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/search_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,8 +136,10 @@
             android:paddingBottom="5dp">
 
             <ImageView
+                android:id="@+id/location_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="5dp"
                 android:src="@drawable/ic_baseline_location" />
@@ -93,19 +148,29 @@
                 android:id="@+id/destination_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_margin="5dp"
+                android:layout_toLeftOf="@+id/favourite_id"
+                android:layout_toRightOf="@+id/location_icon"
                 android:fontFamily="@font/roboto_regular"
+                android:maxLength="50"
+                android:maxLines="2"
                 android:text="@string/enter_the_destination"
                 android:textColor="@color/colorAccent"
                 android:textSize="16sp" />
 
-            <!--            <fragment-->
-            <!--                android:id="@+id/autocomplete_fragment"-->
-            <!--                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content" />-->
+            <ImageView
+                android:id="@+id/favourite_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_unfavourite_icon"
+                android:visibility="gone" />
 
-        </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/search_btn"
@@ -135,12 +200,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="5dp"
-                android:src="@drawable/ic_baseline_arrow_forward" />
+                android:src="@drawable/ic_baseline_forward"
+                app:tint="@color/white" />
 
 
         </LinearLayout>
     </LinearLayout>
 
     <include layout="@layout/search_destination_layout" />
+
+    <include layout="@layout/main_drawer_layout" />
 
 </RelativeLayout>

@@ -6,10 +6,13 @@
     <string name="next">Next</string>
     <string name="continue_fb">Connect With Facebook</string>
     <string name="search_destination">Search Destination</string>
+    <string name="finish_ride">Finish My Ride</string>
     <string name="continue_google">Connect With Google</string>
     <string name="enter_the_destination">Enter The Destination</string>
     <string name="search_for_location">Search for a location</string>
     <string name="log_in">Log In</string>
+    <string name="log_out">Log Out</string>
+    <string name="terms_conditon">Terms &amp; Conditions</string>
     <string name="log_in_account">Log In Account</string>
     <string name="drivepoint_website">www.drivepoints.com</string>
 
@@ -32,12 +35,15 @@
     <string name="server_client_id">482788615437-dic0bvs8lsb92cnjmpq53u9reuofn46f.apps.googleusercontent.com</string>
     <string name="google_client_secret">1M25iZs5Icd5k5ewyWBHKwG2</string>
 
-    <string name="google_maps_key">AIzaSyDgUN5vMP7-m9Fkf-uTVWBhquxwo73LrkY</string>
     <string name="password">Password</string>
-    <string name="your_email">Your Email</string>
+    <string name="email">Email</string>
     <string name="error_message_email">Enter Email</string>
     <string name="error_message_password">Enter Password</string>
     <string name="error_valid_email">Enter Valid Email</string>
     <string name="swipe_next_or_previous">Swipe Next or Previous to see other routes</string>
+    <string name="warning_1">We\'d like to inform you that,\nthere is <b>Road Blockage</b>\nAhead due to <b>An Accident</b>.</string>
+    <string name="warning_2">You can change your route\nor you can stay at near by\nstay points.</string>
+    <string name="warning_3">"Have a Safe Journey"</string>
+    <string name="warning_4">Thank You!</string>
 
 </resources>

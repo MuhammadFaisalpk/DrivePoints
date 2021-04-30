@@ -61,7 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_margin="5dp"
-                android:src="@drawable/ic_baseline_arrow_forward" />
+                android:src="@drawable/ic_baseline_forward"
+                android:tint="@color/white" />
         </LinearLayout>
 
     </LinearLayout>
