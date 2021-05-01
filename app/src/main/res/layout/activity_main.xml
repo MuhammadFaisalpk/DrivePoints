@@ -39,7 +39,8 @@
                 android:padding="10dp"
                 android:text="R1"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/r2_text"
@@ -51,7 +52,8 @@
                 android:padding="10dp"
                 android:text="R2"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/r3_text"
@@ -63,7 +65,8 @@
                 android:padding="10dp"
                 android:text="R3"
                 android:textColor="@color/white"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone" />
         </LinearLayout>
 
     </RelativeLayout>

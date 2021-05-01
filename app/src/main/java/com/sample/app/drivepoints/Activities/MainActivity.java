@@ -29,6 +29,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -166,10 +167,8 @@ public class MainActivity extends AppCompatActivity
     //Recent Locations
     boolean re_routed = false, is_favorite = false, is_expired = false;
     ArrayList<RecentLocation> recentLocations = new ArrayList<>();
-    ArrayList<RecentLocation> favouriteLocations = new ArrayList<>();
 
     RecentAdapter recentAdapter;
-    RecentAdapter favouriteAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,7 +182,7 @@ public class MainActivity extends AppCompatActivity
         initiatingViews();
         initiatingDrawerViews();
         gettingUserDetails();
-        FetchingRecentLocations();
+//        FetchingRecentLocations();
     }
 
     @Override
@@ -551,31 +550,51 @@ public class MainActivity extends AppCompatActivity
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Settings", Toast.LENGTH_SHORT).show();
+                if (main_drawer.getVisibility() == View.VISIBLE) {
+                    main_drawer.setVisibility(View.GONE);
+                }
+                Intent intent = new Intent(MainActivity.this, AccountSettingActivity.class);
+                startActivity(intent);
             }
         });
         road_assistance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Road Side Assistance", Toast.LENGTH_SHORT).show();
+                if (main_drawer.getVisibility() == View.VISIBLE) {
+                    main_drawer.setVisibility(View.GONE);
+                }
+                Intent intent = new Intent(MainActivity.this, RoadAssistanceActivity.class);
+                startActivity(intent);
             }
         });
         apply_insurance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Apply For Insurance", Toast.LENGTH_SHORT).show();
+                if (main_drawer.getVisibility() == View.VISIBLE) {
+                    main_drawer.setVisibility(View.GONE);
+                }
+                Intent intent = new Intent(MainActivity.this, ApplyInsuranceActivity.class);
+                startActivity(intent);
             }
         });
         help_center.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Help Center", Toast.LENGTH_SHORT).show();
+                if (main_drawer.getVisibility() == View.VISIBLE) {
+                    main_drawer.setVisibility(View.GONE);
+                }
+                Intent intent = new Intent(MainActivity.this, HelpCenterActivity.class);
+                startActivity(intent);
             }
         });
         terms_condition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Terms & Condition", Toast.LENGTH_SHORT).show();
+                if (main_drawer.getVisibility() == View.VISIBLE) {
+                    main_drawer.setVisibility(View.GONE);
+                }
+                Intent intent = new Intent(MainActivity.this, TermsConditionActivity.class);
+                startActivity(intent);
             }
         });
         logout_btn.setOnClickListener(new View.OnClickListener() {

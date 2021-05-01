@@ -11,6 +11,8 @@
     <string name="enter_the_destination">Enter The Destination</string>
     <string name="search_for_location">Search for a location</string>
     <string name="log_in">Log In</string>
+    <string name="apply_now">Apply Now</string>
+    <string name="submit">Submit</string>
     <string name="log_out">Log Out</string>
     <string name="terms_conditon">Terms &amp; Conditions</string>
     <string name="log_in_account">Log In Account</string>
@@ -36,7 +38,15 @@
     <string name="google_client_secret">1M25iZs5Icd5k5ewyWBHKwG2</string>
 
     <string name="password">Password</string>
+    <string name="write_message">Write Your Message</string>
     <string name="email">Email</string>
+    <string name="first_name">First Name</string>
+    <string name="your_name">Your Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="your_email">Your Email</string>
+    <string name="subject">Subject</string>
+    <string name="your_number">Your Number</string>
+    <string name="vehicle_number">Vehicle Number</string>
     <string name="error_message_email">Enter Email</string>
     <string name="error_message_password">Enter Password</string>
     <string name="error_valid_email">Enter Valid Email</string>
@@ -45,5 +55,16 @@
     <string name="warning_2">You can change your route\nor you can stay at near by\nstay points.</string>
     <string name="warning_3">"Have a Safe Journey"</string>
     <string name="warning_4">Thank You!</string>
-
+    <string name="rating_title">How Was Your\nTravel With Us!</string>
+    <string name="rating_text">We\'d appreciate if you\nrate the route where you\nhave traveled</string>
+    <string name="thanks_text">We\'d like to say you\n<b>Thank You!</b>\nfor Travel with us.</string>
+    <string name="road_assistance1">Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit\nesse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="road_assistance2">Sed ac velit vel risus rutrum accumsan.</string>
+    <string name="road_assistance3">Phasellus sollicitudin sem et gravida.</string>
+    <string name="road_assistance4">Vestibulum mi auctor, mollis interdum nisi.</string>
+    <string name="road_assistance5">Mauris ultrices diam ac nibh molestee.</string>
+    <string name="road_assistance6">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugia.</string>
+    <string name="terms_condition">Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugia. Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugia sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam.</string>
+    <string name="your_password">Your Password</string>
+    <string name="contact">Contact</string>
 </resources>

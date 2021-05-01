@@ -27,6 +27,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,7 +84,7 @@ public class DriveActivity extends AppCompatActivity implements OnMapReadyCallba
     boolean isStartLatLng = true;
     double startLat = 0, startLng = 0, endLat = 0, endLng = 0;
     private LinearLayout finish_btn;
-    AlertDialog trafficDialog, takeactionDialog, finishDialog;
+    AlertDialog trafficDialog, takeactionDialog, finishDialog, ratingDialog, thanksDialog;
 
     //Current Location Components
     private static final String TAG = DriveActivity.class.getSimpleName();
@@ -499,63 +500,59 @@ public class DriveActivity extends AppCompatActivity implements OnMapReadyCallba
         final View dialogView = inflater.inflate(R.layout.rating_popup, null);
         dialogBuilder.setCancelable(false);
         dialogBuilder.setView(dialogView);
-        finishDialog = dialogBuilder.create();
-        finishDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        ratingDialog = dialogBuilder.create();
+        ratingDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-        ImageView close_dialog = (ImageView) dialogView.findViewById(R.id.close_dialog);
-        TextView from_location = (TextView) dialogView.findViewById(R.id.from_location);
-        TextView to_location = (TextView) dialogView.findViewById(R.id.to_location);
-        TextView mileage_text = (TextView) dialogView.findViewById(R.id.mileage_text);
-        TextView time_estimate_text = (TextView) dialogView.findViewById(R.id.time_estimate_text);
-        TextView download = (TextView) dialogView.findViewById(R.id.download);
-        TextView dashboard = (TextView) dialogView.findViewById(R.id.dashboard);
-        TextView email = (TextView) dialogView.findViewById(R.id.email);
-        TextView share = (TextView) dialogView.findViewById(R.id.share);
+        RatingBar ratingBar = (RatingBar) dialogView.findViewById(R.id.ratingbar);
+        TextView submit = (TextView) dialogView.findViewById(R.id.submit);
+        TextView skip = (TextView) dialogView.findViewById(R.id.skip);
 
-        from_location.setText(route_details.get(0).getFrom_address());
-        to_location.setText(route_details.get(0).getTo_address());
-        mileage_text.setText(route_details.get(0).getRoute_distance());
-        time_estimate_text.setText(route_details.get(0).getRoute_duration());
-
-        close_dialog.setOnClickListener(new View.OnClickListener() {
+        submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                finishDialog.dismiss();
+                String rating = "Rating is :" + ratingBar.getRating();
+                Toast.makeText(DriveActivity.this, rating, Toast.LENGTH_LONG).show();
             }
         });
-        download.setOnClickListener(new View.OnClickListener() {
+        skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(DriveActivity.this, "Download", Toast.LENGTH_SHORT).show();
-            }
-        });
-        dashboard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(DriveActivity.this, "Dashboard", Toast.LENGTH_SHORT).show();
-            }
-        });
-        email.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(DriveActivity.this, "Email", Toast.LENGTH_SHORT).show();
-            }
-        });
-        share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(DriveActivity.this, "Share", Toast.LENGTH_SHORT).show();
+                Toast.makeText(DriveActivity.this, "Skip", Toast.LENGTH_SHORT).show();
             }
         });
 
-        finishDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        ratingDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         try {
-            finishDialog.show();
+            ratingDialog.show();
         } catch (WindowManager.BadTokenException e) {
             //use a log message
         }
     }
 
+    private void ThanksDialog() {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(DriveActivity.this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.thanks_popup, null);
+        dialogBuilder.setCancelable(false);
+        dialogBuilder.setView(dialogView);
+        thanksDialog = dialogBuilder.create();
+        thanksDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+
+        ImageView close = (ImageView) dialogView.findViewById(R.id.close);
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                thanksDialog.dismiss();
+            }
+        });
+
+        thanksDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        try {
+            thanksDialog.show();
+        } catch (WindowManager.BadTokenException e) {
+            //use a log message
+        }
+    }
 
 }
