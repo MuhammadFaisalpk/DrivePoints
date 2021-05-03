@@ -100,6 +100,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import static com.sample.app.drivepoints.Activities.MainActivity.hideSoftKeyboard;
 
@@ -128,6 +129,9 @@ public class MainActivity extends AppCompatActivity
 
     String URL_ADDING_RECENT_LOCATIONS = "http://34.69.251.155:8000/api/v1/m/create-task/";
     String URL_FETCHING_RECENT_LOCATIONS = "http://34.69.251.155:8000/api/v1/route/travel/history/";
+    String URL_ADDING_FAVOURITE_LOCATIONS = "http://34.69.251.155:8000/api/v1/m/route/mark/favorite/";
+    String URL_FETCHING_FAVOURITE_LOCATIONS = "http://34.69.251.155:8000/api/v1/m/route/favorite/list/";
+    String URL_UPDATING_FAVOURITE_LOCATIONS = "http://34.69.251.155:8000/api/v1/m/route/favorite/update/";
     String URL_ROUTES_LATLNG = "http://34.69.251.155:8000/api/v1/m/get/route-longlat/";
     private ProgressDialog Loading;
     SupportMapFragment mapFragment;
@@ -147,7 +151,7 @@ public class MainActivity extends AppCompatActivity
     String start_time, end_time, current_address;
 
     //For Fetching User Data
-    private String MyPREFERENCES = "mypref", User_Token, User_Name, User_Type;
+    private String MyPREFERENCES = "mypref", User_Token, User_Name, User_Type, mtask_id = null;
     SharedPreferences sharedpreferences;
 
     //For Search Destination
@@ -182,7 +186,7 @@ public class MainActivity extends AppCompatActivity
         initiatingViews();
         initiatingDrawerViews();
         gettingUserDetails();
-//        FetchingRecentLocations();
+        FetchingFavouriteLocations();
     }
 
     @Override
@@ -815,16 +819,16 @@ public class MainActivity extends AppCompatActivity
                                     double r1_route_duration = r1.getDouble("route_duration");
 
                                     double r1_seconds = r1_route_duration;
-                                    double r1_hours = 0;
-                                    double r1_mints = 0;
-                                    r1_hours = (r1_seconds % 86400) / 3600;
-                                    r1_mints = ((r1_seconds % 86400) % 3600) / 60;
+                                    long r1_hours = 0;
+                                    long r1_mints = 0;
 
-                                    long r1_fhour = Math.round(r1_hours);
-                                    long r1_fmint = Math.round(r1_mints);
+                                    long x_seconds = (long) r1_seconds; // x = 1234
+                                    long day = (long) TimeUnit.SECONDS.toDays(x_seconds);
+                                    r1_hours = TimeUnit.SECONDS.toHours(x_seconds) - (day * 24);
+                                    r1_mints = TimeUnit.SECONDS.toMinutes(x_seconds) - (TimeUnit.SECONDS.toHours(x_seconds) * 60);
 
                                     String r1_distance = String.valueOf(r1_route_distance) + " miles";
-                                    String r1_duration = r1_fhour + " hrs " + r1_fmint + " mints";
+                                    String r1_duration = r1_hours + " hrs " + r1_mints + " mints";
 
                                     RouteDetails r1Details = new RouteDetails();
                                     r1Details.setFrom_address(from_address);
@@ -863,16 +867,16 @@ public class MainActivity extends AppCompatActivity
                                     double r2_route_duration = r2.getDouble("route_duration");
 
                                     double r2_seconds = r2_route_duration;
-                                    double r2_hours = 0;
-                                    double r2_mints = 0;
-                                    r2_hours = (r2_seconds % 86400) / 3600;
-                                    r2_mints = ((r2_seconds % 86400) % 3600) / 60;
+                                    long r2_hours = 0;
+                                    long r2_mints = 0;
 
-                                    long r2_fhour = Math.round(r2_hours);
-                                    long r2_fmint = Math.round(r2_mints);
+                                    long x_seconds = (long) r2_seconds; // x = 1234
+                                    long day = (long) TimeUnit.SECONDS.toDays(x_seconds);
+                                    r2_hours = TimeUnit.SECONDS.toHours(x_seconds) - (day * 24);
+                                    r2_mints = TimeUnit.SECONDS.toMinutes(x_seconds) - (TimeUnit.SECONDS.toHours(x_seconds) * 60);
 
                                     String r2_distance = String.valueOf(r2_route_distance) + " miles";
-                                    String r2_duration = r2_fhour + " hrs " + r2_fmint + " mints";
+                                    String r2_duration = r2_hours + " hrs " + r2_mints + " mints";
 
                                     RouteDetails r2Details = new RouteDetails();
                                     r2Details.setFrom_address(from_address);
@@ -910,16 +914,16 @@ public class MainActivity extends AppCompatActivity
                                     double r3_route_duration = r3.getDouble("route_duration");
 
                                     double r3_seconds = r3_route_duration;
-                                    double r3_hours = 0;
-                                    double r3_mints = 0;
-                                    r3_hours = (r3_seconds % 86400) / 3600;
-                                    r3_mints = ((r3_seconds % 86400) % 3600) / 60;
+                                    long r3_hours = 0;
+                                    long r3_mints = 0;
 
-                                    long r3_fhour = Math.round(r3_hours);
-                                    long r3_fmint = Math.round(r3_mints);
+                                    long x_seconds = (long) r3_seconds; // x = 1234
+                                    long day = (long) TimeUnit.SECONDS.toDays(x_seconds);
+                                    r3_hours = TimeUnit.SECONDS.toHours(x_seconds) - (day * 24);
+                                    r3_mints = TimeUnit.SECONDS.toMinutes(x_seconds) - (TimeUnit.SECONDS.toHours(x_seconds) * 60);
 
                                     String r3_distance = String.valueOf(r3_route_distance) + " miles";
-                                    String r3_duration = r3_fhour + " hrs " + r3_fmint + " mints";
+                                    String r3_duration = r3_hours + " hrs " + r3_mints + " mints";
 
                                     RouteDetails r3Details = new RouteDetails();
                                     r3Details.setFrom_address(from_address);
@@ -1303,12 +1307,16 @@ public class MainActivity extends AppCompatActivity
                             boolean success = response.getBoolean("success");
                             if (success) {
                                 String Msg = response.getString("message");
-                                hideDialog();
+                                mtask_id = response.getString("mtask_id");
 
-                                Intent intent = new Intent(MainActivity.this, DriveActivity.class);
-                                startActivity(intent);
+                                if (is_favorite) {
+                                    AddingFavouriteLocations();
+                                } else {
+                                    Toast.makeText(MainActivity.this, "" + Msg, Toast.LENGTH_SHORT).show();
 
-                                Toast.makeText(MainActivity.this, "" + Msg, Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(MainActivity.this, DriveActivity.class);
+                                    startActivity(intent);
+                                }
 
                             } else {
                                 hideDialog();
@@ -1373,13 +1381,195 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void FetchingRecentLocations() {
+    private void AddingFavouriteLocations() {
+        JSONObject jsonObject = new JSONObject();
+        String stringFromLatLng = Test_from.latitude + "," + Test_from.longitude;
+        String stringToLatLng = Test_to.latitude + "," + Test_to.longitude;
+        try {
+            jsonObject.put("source_address", from_address);
+            jsonObject.put("destination_address", to_address);
+            jsonObject.put("source_longlat", stringFromLatLng);
+            jsonObject.put("destination_longlat", stringToLatLng);
+            jsonObject.put("is_favorite", true);
+            jsonObject.put("mtask_id", mtask_id);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, URL_ADDING_FAVOURITE_LOCATIONS, jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            boolean success = response.getBoolean("success");
+                            if (success) {
+                                String Msg = response.getString("message");
+                                hideDialog();
+
+                                Intent intent = new Intent(MainActivity.this, DriveActivity.class);
+                                startActivity(intent);
+
+                                Toast.makeText(MainActivity.this, "" + Msg, Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                hideDialog();
+
+                                Intent intent = new Intent(MainActivity.this, DriveActivity.class);
+                                startActivity(intent);
+                            }
+                        } catch (Exception exception) {
+                            Logger.addRecordToLog(MainActivity.this.getLocalClassName() + "Crash Error: " + exception);
+                            exception.printStackTrace();
+                            Toast.makeText(MainActivity.this, "Some error occurred! Try again later", Toast.LENGTH_LONG).show();
+                            hideDialog();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if (error == null || error.networkResponse == null) {
+                            return;
+                        }
+                        String body = null, msg = "";
+                        JSONObject jsonObject;
+                        //get status code here
+                        final String statusCode = String.valueOf(error.networkResponse.statusCode);
+                        //get response body and parse with appropriate encoding
+                        try {
+                            body = new String(error.networkResponse.data, "UTF-8");
+                            jsonObject = new JSONObject(body);
+                            msg = jsonObject.getString("message");
+                        } catch (UnsupportedEncodingException | JSONException e) {
+                            // exception
+                        }
+
+                        hideDialog();
+                        Toast.makeText(MainActivity.this, "" + msg, Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(MainActivity.this, DriveActivity.class);
+                        startActivity(intent);
+                        Logger.addRecordToLog(MainActivity.this.getLocalClassName() + "API Error: " + error);
+                    }
+                }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+
+                headers.put("Authorization", "Bearer " + User_Token);
+
+                return headers;
+            }
+        };
+        int socketTimeout = 60000; // 30 seconds. You can change it
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,
+                0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+
+        jsonObjectRequest.setRetryPolicy(policy);
+
+        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+        requestQueue.add(jsonObjectRequest);
+        jsonObjectRequest.setShouldCache(false);
+
+    }
+
+    private void UpdateFavouriteLocations(String mfavourite_id) {
         JSONObject jsonObject = new JSONObject();
 
-        Loading.setMessage("Fetching Recent Location.Please wait");
+        Loading.setMessage("Updating Favourite Location.Please wait");
+        showDialog();
+        try {
+            jsonObject.put("mfavourite_id", mfavourite_id);
+            jsonObject.put("is_favorite", false);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.PUT, URL_UPDATING_FAVOURITE_LOCATIONS, jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            boolean success = response.getBoolean("success");
+                            if (success) {
+                                String Msg = response.getString("message");
+                                hideDialog();
+
+                                Toast.makeText(MainActivity.this, "" + Msg, Toast.LENGTH_SHORT).show();
+
+                            } else {
+                                hideDialog();
+                            }
+                        } catch (Exception exception) {
+                            Logger.addRecordToLog(MainActivity.this.getLocalClassName() + "Crash Error: " + exception);
+                            exception.printStackTrace();
+                            Toast.makeText(MainActivity.this, "Some error occurred! Try again later", Toast.LENGTH_LONG).show();
+                            hideDialog();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.M)
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        if (error == null || error.networkResponse == null) {
+                            return;
+                        }
+                        String body = null, msg = "";
+                        JSONObject jsonObject;
+                        //get status code here
+                        final String statusCode = String.valueOf(error.networkResponse.statusCode);
+                        //get response body and parse with appropriate encoding
+                        try {
+                            body = new String(error.networkResponse.data, "UTF-8");
+                            jsonObject = new JSONObject(body);
+                            msg = jsonObject.getString("message");
+                        } catch (UnsupportedEncodingException | JSONException e) {
+                            // exception
+                        }
+
+                        hideDialog();
+                        Toast.makeText(MainActivity.this, "" + msg, Toast.LENGTH_LONG).show();
+
+                        Logger.addRecordToLog(MainActivity.this.getLocalClassName() + "API Error: " + error);
+                    }
+                }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+
+                headers.put("Authorization", "Bearer " + User_Token);
+
+                return headers;
+            }
+        };
+        int socketTimeout = 60000; // 30 seconds. You can change it
+        RetryPolicy policy = new DefaultRetryPolicy(socketTimeout,
+                0,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+
+        jsonObjectRequest.setRetryPolicy(policy);
+
+        RequestQueue requestQueue = Volley.newRequestQueue(MainActivity.this);
+        requestQueue.add(jsonObjectRequest);
+        jsonObjectRequest.setShouldCache(false);
+
+    }
+
+    private void FetchingFavouriteLocations() {
+        recentLocations.clear();
+
+        JSONObject jsonObject = new JSONObject();
+
+        Loading.setMessage("Fetching Favourite Location.Please wait");
         showDialog();
 
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_FETCHING_RECENT_LOCATIONS, jsonObject,
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, URL_FETCHING_FAVOURITE_LOCATIONS, jsonObject,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -1394,7 +1584,7 @@ public class MainActivity extends AppCompatActivity
                                     String destination_address = data.getJSONObject(i).getString("destination_address");
                                     String source_longlat = data.getJSONObject(i).getString("source_longlat");
                                     String destination_longlat = data.getJSONObject(i).getString("destination_longlat");
-                                    String route_selected = data.getJSONObject(i).getString("route_selected");
+                                    String mtask_id = data.getJSONObject(i).getString("mtask_id");
                                     boolean is_favorite = data.getJSONObject(i).getBoolean("is_favorite");
 
                                     RecentLocation recentLocation = new RecentLocation();
@@ -1402,7 +1592,7 @@ public class MainActivity extends AppCompatActivity
                                     recentLocation.setDestination_address(destination_address);
                                     recentLocation.setSource_longlat(source_longlat);
                                     recentLocation.setDestination_longlat(destination_longlat);
-                                    recentLocation.setRoute_selected(route_selected);
+                                    recentLocation.setRoute_selected(mtask_id);
                                     recentLocation.setIs_favorite(is_favorite);
 
                                     recentLocations.add(recentLocation);
@@ -1476,6 +1666,30 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    public LatLng getLocationFromAddress(String strAddress) {
+
+        Geocoder coder = new Geocoder(MainActivity.this);
+        List<Address> address;
+        LatLng latLng = null;
+
+        try {
+            // May throw an IOException
+            address = coder.getFromLocationName(strAddress, 5);
+            if (address == null) {
+                return null;
+            }
+
+            Address location = address.get(0);
+            latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+        } catch (IOException ex) {
+
+            ex.printStackTrace();
+        }
+
+        return latLng;
+    }
+
     private static String route_point_time() {
         SimpleDateFormat s = new SimpleDateFormat("hhmmss");
         String format = s.format(new Date());
@@ -1532,30 +1746,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    public LatLng getLocationFromAddress(String strAddress) {
-
-        Geocoder coder = new Geocoder(MainActivity.this);
-        List<Address> address;
-        LatLng latLng = null;
-
-        try {
-            // May throw an IOException
-            address = coder.getFromLocationName(strAddress, 5);
-            if (address == null) {
-                return null;
-            }
-
-            Address location = address.get(0);
-            latLng = new LatLng(location.getLatitude(), location.getLongitude());
-
-        } catch (IOException ex) {
-
-            ex.printStackTrace();
-        }
-
-        return latLng;
-    }
-
     class RecentAdapter extends BaseAdapter {
         ArrayList<RecentLocation> arrayList;
         Context context;
@@ -1593,8 +1783,8 @@ public class MainActivity extends AppCompatActivity
                 ImageView favourite_img = (ImageView) convertView.findViewById(R.id.favourite_img);
                 TextView source_name = (TextView) convertView.findViewById(R.id.source_name);
                 TextView destination_name = (TextView) convertView.findViewById(R.id.destination_name);
-
                 boolean favourite_check = dietDetailsModel.isIs_favorite();
+
                 if (favourite_check) {
                     favourite_img.setImageResource(R.drawable.ic_favourite_icon);
                 } else {
@@ -1602,7 +1792,22 @@ public class MainActivity extends AppCompatActivity
                 }
                 source_name.setText(dietDetailsModel.getSource_address());
                 destination_name.setText(dietDetailsModel.getDestination_address());
+                favourite_img.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (favourite_check) {
+                            favourite_img.setImageResource(R.drawable.ic_unfavourite_icon);
+                            mtask_id = dietDetailsModel.getRoute_selected();
 
+                            UpdateFavouriteLocations(mtask_id);
+
+//                            FetchingFavouriteLocations();
+                        } else {
+                            favourite_img.setImageResource(R.drawable.ic_favourite_icon);
+
+                        }
+                    }
+                });
                 convertView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -1611,7 +1816,7 @@ public class MainActivity extends AppCompatActivity
                         from_address = dietDetailsModel.getSource_address();
                         to_address = dietDetailsModel.getDestination_address();
                         is_favorite = dietDetailsModel.isIs_favorite();
-
+                        mtask_id = dietDetailsModel.getRoute_selected();
                         from_string = dietDetailsModel.getSource_longlat();
                         to_string = dietDetailsModel.getDestination_longlat();
                         if (from_string != null) {
